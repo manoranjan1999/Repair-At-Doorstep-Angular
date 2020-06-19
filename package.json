@@ -30,7 +30,7 @@
     "highcharts": "^8.0.4",
     "highcharts-angular": "^2.4.0",
     "html2canvas": "1.0.0-rc.1",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "jspdf": "^1.5.3",
     "ngx-spinner": "^9.0.2",
     "ngx-toastr": "^10.0.1",
