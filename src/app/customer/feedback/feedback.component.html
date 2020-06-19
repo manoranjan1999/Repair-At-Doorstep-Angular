@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header text-center">
+          Feedback Form
+        </div>
+        <div class="card-body">
+          <div class="text-center">
+            <div class="rating-wrapper">
+
+              <input type="radio" id="star-5" name="rating" value="5" (change)="radioChangeHandler($event)" />
+              <label for="star-5" title="Outstanding"></label>
+              <input type="radio" id="star-4" name="rating" value="4" (change)="radioChangeHandler($event)" />
+              <label for="star-4" title="Excellent"></label>
+              <input type="radio" id="star-3" name="rating" value="3" (change)="radioChangeHandler($event)" />
+              <label for="star-3" title="Very Good"></label>
+              <input type="radio" id="star-2" name="rating" value="2" (change)="radioChangeHandler($event)" />
+              <label for="star-2" title="Good"></label>
+              <input type="radio" id="star-1" name="rating" value="1" (change)="radioChangeHandler($event)" />
+              <label for="star-1" title="Poor"></label>
+            </div>
+            <div class="feedback_Text">
+              <textarea #feedbackText class="form-control" id="exampleFormControlTextarea1" rows="3"
+                placeholder="Say something"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="text-right">
+          <button type="button" class="btn btn-secondary mr-3 mb-3" (click)="clearForm()">Clear</button>
+          <button type="button" class="btn btn-primary mr-3 mb-3"
+            (click)="sendFeedback(feedbackText.value)">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

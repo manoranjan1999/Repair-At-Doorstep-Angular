@@ -1,0 +1,56 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item"><a href="#">Service Provider</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Customer Feedback</li>
+    </ol>
+</nav>
+
+<section id="team" class="pb-1">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-4 mt-3" *ngFor="let feedbackObj of userId; let i=index;">
+                <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+                    <div class="mainflip flip-0">
+                        <div class="frontside">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <p><img class=" img-fluid" src="../../assets/img/profile.svg" alt="Customer image">
+                                    </p>
+                                    <h4 class="card-title">{{customerName[i]}}</h4>
+
+                                    <div class="stars text-center">
+                                        <span class="fa fa-star "
+                                            [ngClass]="[ ratingStars[i] > 1 || ratingStars[i] ===1 ? 'checked' : 'null']"></span>
+                                        <span class="fa fa-star "
+                                            [ngClass]="[ ratingStars[i] > 2 || ratingStars[i] ===2 ? 'checked' : 'null']"></span>
+                                        <span class="fa fa-star "
+                                            [ngClass]="[ ratingStars[i] > 3 || ratingStars[i] ===3 ? 'checked' : 'null']"></span>
+                                        <span class="fa fa-star "
+                                            [ngClass]="[ ratingStars[i] > 4 || ratingStars[i] ===4 ? 'checked' : 'null']"></span>
+                                        <span class="fa fa-star "
+                                            [ngClass]="[ ratingStars[i] === 5 ? 'checked' : 'null']"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="backside">
+                            <div class="card">
+                                <div class="card-body text-center mt-4">
+                                    <h4 class="card-title">{{productName[i]}}</h4>
+                                    <hr>
+                                    <h5 class="productDesc">[{{description[i]}}]</h5>
+                                    <p class="card-text">"{{feedbackText[i]}}"</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<ngx-spinner size="medium" color="#fff" type="line-scale" [fullScreen]="true">
+    <p style="color: white"> Preparing to Download... </p>
+</ngx-spinner>

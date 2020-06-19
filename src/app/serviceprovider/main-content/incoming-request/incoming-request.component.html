@@ -1,0 +1,41 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item"><a href="#">Service Provider</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Customer Request</li>
+  </ol>
+</nav>
+<button class="btn btn-light refresh" (click)="getOpenRequestData()" data-toggle="tooltip" data-placement="top"
+  title="Refresh to get new request">Refresh</button>
+<div style="border: 1px solid white;" *ngFor="let i of openRequest">
+  <div class="row request">
+    <div class="col-sm-6 ">
+      <div class="card">
+        <div class="card-header addressType">
+          {{i[6]}}
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{i[2]}}</h5>
+          <h6 class="card-title">{{i[1]}} {{i[5]}}</h6>
+          <p class="card-text">{{i[3]}}</p>
+          <button class="btn btn-danger">Decline</button>
+          <button class="btn btn-success" style="float: right;" (click)="accept(i)">Accrept</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-header addressType">
+          Address
+        </div>
+        <div class="card-body">
+          <p class="card-text">{{i[9]}}</p>
+          <p>{{i[8]?.split(',')[1]}} {{i[8]?.split(',')[0]}}</p>
+          <p style="font-weight: bolder;">{{i[8]?.split(',')[2]}} , {{i[8]?.split(',')[3]}} {{i[10]}}</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
+</div>

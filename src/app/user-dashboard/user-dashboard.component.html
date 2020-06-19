@@ -1,0 +1,810 @@
+<nav class="navbar navbar-light bg-light justify-content-between" style="margin-bottom: 20px;">
+  <a class="navbar-brand" href="#">
+    <img src="../../assets/img/logo.png" width="55" height="40" class="d-inline-block align-top" alt="">
+    <h2 class="text">Repair At Your Doorstep</h2>
+  </a>
+  <form class="form-inline">
+    <i class="fas fa-tachometer-alt dashboard" aria-hidden="true"></i>
+    <a type="button" class="nav-link" (click)="dashboard()">Dashboard</a>
+    <i class="fas fa-plus-square plus"></i>
+    <a type="button" class="nav-link" data-toggle="modal" data-target="#exampleModalCenter"
+      (click)="fetchAddress()">Service Request</a>
+
+    <i class="fas fa-bell-slash cart"></i><sup>{{notification}}</sup>
+    <a class="nav-link" data-toggle="modal" data-target="#exampleModalLong" (click)="notifiaction()">Notification </a>
+    <i class="fas fa-luggage-cart cart"></i>
+    <a class="nav-link" data-toggle="modal" data-target="#portfolio" (click)="portfolioDetails()">Portfolio</a>
+    <div class="profile" data-toggle="modal" data-target="#sideModalTR" (click)="getUser()">
+      <div class="middle">
+        <div class="textProfile">Profile</div>
+      </div>
+      <img src="../../assets/img/avatar.svg" width="50px" height="50px">
+
+    </div>
+  </form>
+</nav>
+
+<div class="container" style="margin-top: 20px;width: 70%;">
+  <div *ngFor="let data of paymentData">
+    <div class="card" style="box-shadow: 2px 2px 20px 1px;margin: 20px;">
+      <div class="card-header row">
+        <div class="col-md-10">
+          <h5>Completed Request</h5>
+        </div>
+        <div class="col-md-2">
+          <div class="row">
+            <h6 style="float: right;">Date</h6>
+          </div>
+          <div class="row">
+            {{data.localDate}}
+          </div>
+        </div>
+      </div>
+      <div class="card-body row" style="margin-top: 0px">
+        <div class="col-md-10">
+          <h5 class="card-title">{{data.productName}} {{data.companyName}} {{data.modelNumber}}</h5>
+
+          <p class="card-text">{{data.description}}</p>
+        </div>
+        <div class="col-md-2">
+          <div class="row">
+            <h5 style="float: right;">Status</h5>
+          </div>
+          <div class="row">
+            <p style="float: right;color: green;font-weight: bolder;">Completed</p>
+          </div>
+          <div class="row">
+            <!-- <a class="btn btn-outline-success" style="float: right;" (click)="setRequestId(data.serviceRequestId)">Pay Now</a> -->
+            <button style="margin-right: 80px;" class="btn btn-outline-success dropdown-toggle" type="button"
+              id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Pay Now
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" id="stripe" (click)="setRequestId(data.serviceRequestId)"
+                routerLinkActive="active">Pay Using Stripe</a>
+              <a class="dropdown-item" id="paytm" (click)="setRequestIdForPaytm(data.serviceRequestId)"
+                routerLinkActive="active">Pay Using Paytm</a>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<div *ngIf="view" class="container">
+  <div>
+    <div class="modal-header">
+      <h3 style=" color: blue;margin: auto; padding: 20px;">All Service Request</h3>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <canvas id="pieChart"></canvas>
+      </div>
+      <div class="col-md-6">
+        <canvas id="barChart"></canvas>
+
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="row" style=" margin-top: 30px;">
+      <div class="col-md">
+        <div class="card card-image" style="background-image: url(../../assets/img/electronics.png);">
+
+          <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
+            <div>
+              <h5 class="orange-text"><i class="fas fa-chart-pie"></i> Electronics</h5>
+              <h3 class="card-title pt-2"><strong>This is the card title</strong></h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem,
+                optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos.
+                Odit sed qui, dolorum!.</p>
+              <a class="btn btn-pink" data-toggle="modal" data-target="#ViewDetails"><i class="fas fa-clone left"></i>
+                View Details</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="col-md">
+
+        <div class="card card-image" style="background-image: url(../../assets/img/plumber.png);">
+
+          <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
+            <div>
+              <h5 class="orange-text"><i class="fas fa-chart-pie"></i> Plumber</h5>
+              <h3 class="card-title pt-2"><strong>This is the card title</strong></h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem,
+                optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos.
+                Odit sed qui, dolorum!.</p>
+              <a class="btn btn-pink" data-toggle="modal" data-target="#ViewDetails"><i class="fas fa-clone left"></i>
+                View Details</a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+    <div class="row" style=" margin-top: 30px;">
+      <div class="col-md">
+        <div class="card card-image" style="background-image: url(../../assets/img/mechanic.png);">
+
+          <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
+            <div>
+              <h5 class="orange-text"><i class="fas fa-chart-pie"></i> Mechanic</h5>
+              <h3 class="card-title pt-2"><strong>This is the card title</strong></h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem,
+                optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos.
+                Odit sed qui, dolorum!.</p>
+              <a class="btn btn-pink" data-toggle="modal" data-target="#ViewDetails"><i class="fas fa-clone left"></i>
+                View Details</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="col-md">
+
+        <div class="card card-image" style="background-image: url(../../assets/img/furniture.png);">
+
+          <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
+            <div>
+              <h5 class="orange-text"><i class="fas fa-chart-pie"></i> Furniture</h5>
+              <h3 class="card-title pt-2"><strong>This is the card title</strong></h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem,
+                optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos.
+                Odit sed qui, dolorum!.</p>
+              <a class="btn btn-pink" data-toggle="modal" data-target="#ViewDetails"><i class="fas fa-clone left"></i>
+                View Details</a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<form [formGroup]="addProblemForm">
+  <div class="modal fade bd-example-modal-lg modal-dialog-scrollable " id="exampleModalCenter" tabindex="-1"
+    role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Glad to help you!!</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container-fluid">
+
+            <div class="row">
+              <div class="col-md">
+                <div class="form-group">
+                  <label>Product Name<sup>*</sup></label>
+                  <input type="text" class="form-control" placeholder="TV,Fan,Bed..." formControlName="productName">
+                  <div
+                    *ngIf="addProblemForm.controls['productName'].invalid && (addProblemForm.controls['productName'].dirty || addProblemForm.controls['productName'].touched)"
+                    class="alert alert-warning">
+                    <div *ngIf="addProblemForm.controls['productName'].errors.required">product Type is required</div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-md">
+                <div class="form-group">
+                  <label for="exampleFormControlSelect1">Product Type<sup>*</sup></label>
+                  <select class="form-control" id="exampleFormControlSelect1" formControlName="productType">
+                    <option>Electronics</option>
+                    <option>Plumbing</option>
+                    <option>Furniture</option>
+                    <option>Mechanic</option>
+                  </select>
+                  <div
+                    *ngIf="addProblemForm.controls['productType'].invalid && (addProblemForm.controls['productType'].dirty || addProblemForm.controls['productType'].touched)"
+                    class="alert alert-warning">
+                    <div *ngIf="addProblemForm.controls['productType'].errors.required">product Type is required</div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md">
+                <div class="form-group">
+                  <label>Company Name<sup>*</sup></label>
+                  <input type="text" class="form-control" placeholder="Enter company name"
+                    formControlName="companyName">
+                  <div
+                    *ngIf="addProblemForm.controls['companyName'].invalid && (addProblemForm.controls['companyName'].dirty || addProblemForm.controls['companyName'].touched)"
+                    class="alert alert-warning">
+                    <div *ngIf="addProblemForm.controls['companyName'].errors.required">company Name is required</div>
+                  </div>
+                </div>
+
+
+              </div>
+              <div class="col-md">
+                <div class="form-group">
+                  <label>Model Number<sup>*</sup></label>
+                  <input type="text" class="form-control" placeholder="Enter model number"
+                    formControlName="modelNumber">
+                  <div
+                    *ngIf="addProblemForm.controls['modelNumber'].invalid && (addProblemForm.controls['modelNumber'].dirty || addProblemForm.controls['modelNumber'].touched)"
+                    class="alert alert-warning">
+                    <div *ngIf="addProblemForm.controls['modelNumber'].errors.required">Model Number is required</div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="col-md">
+                <div class="form-group">
+                  <label for="exampleFormControlTextarea1">Description<sup>*</sup></label>
+                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                    placeholder="Brief about your problem" formControlName="description"></textarea>
+                  <div
+                    *ngIf="addProblemForm.controls['description'].invalid && (addProblemForm.controls['description'].dirty || addProblemForm.controls['description'].touched)"
+                    class="alert alert-warning">
+                    <div *ngIf="addProblemForm.controls['description'].errors.required">Product Description is required
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          
+
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" href="#selectAddress" data-toggle="modal" data-dismiss="modal" class="btn btn-info"
+            [disabled]="!addProblemForm.valid" (click)="address();addProblemData();">Next</button>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+
+<div class="modal fade bd-example-modal-lg modal-dialog-scrollable " id="selectAddress" tabindex="-1" role="dialog"
+  aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Select Address</h5>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div *ngFor="let address of addressData ;let i=index" style="width:100%;">
+
+
+            <div class="card">
+              <div class="card-header addressType">
+                Home
+              </div>
+              <div class="card-body" style="width: 100%;">
+                <h5 class="card-title"></h5>
+                <p class="card-text">{{address.currentLocation}}</p>
+                <p>{{address.completeAddress?.split(',')[1]}} {{address.completeAddress?.split(',')[0]}}</p>
+                <p style="font-weight: bolder;">{{address.completeAddress?.split(',')[2]}} ,
+                  {{address.completeAddress?.split(',')[3]}} {{address.pinCode}}</p>
+                <a class="btn btn-success" (click)="addressValue(address)" data-dismiss="modal">Select</a>
+              </div>
+            </div>
+
+
+          </div>
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-info addNew" data-toggle="modal" data-target="#addressModel" data-dismiss="modal"><i
+            class="fas fa-plus-square add"></i> Add New</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade bd-example-modal-lg modal-dialog-scrollable " id="addressModel" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <form class="address-form" [formGroup]="addressForm">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Glad to help you!!</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+
+        </div>
+        <h3>Address</h3>
+
+        <div class="modal-body">
+          <div class="container-fluid">
+
+            <div class="text-center">
+              <img src="../../assets/img/address2.svg" class="addImg">
+              <h2 class="title"><b>Manage Address</b></h2>
+              <p class="user-notification">This page will help RAYD know about you.</p>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="inputLocality" id="inputField"><b>Locality<sup>*</sup></b></label>
+                <input type="text" class="form-control" id="inputLocality" placeholder="1234 Main bazar.."
+                  formControlName="locality">
+                <div
+                  *ngIf="addressForm.controls['locality'].invalid && (addressForm.controls['locality'].dirty || addressForm.controls['locality'].touched)"
+                  class="alert alert-warning">
+                  <div *ngIf="addressForm.controls['locality'].errors.required">This Field is required</div>
+                </div>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputCity" id="inputField"><b>City/District/Town<sup>*</sup></b></label>
+                <input type="text" class="form-control" id="inputCity" formControlName="city">
+                <div
+                  *ngIf="addressForm.controls['city'].invalid && (addressForm.controls['city'].dirty || addressForm.controls['city'].touched)"
+                  class="alert alert-warning">
+                  <div *ngIf="addressForm.controls['city'].errors.required">This Field is required</div>
+                </div>
+              </div>
+
+
+              <div class="form-group col-md-12">
+                <label for="address" id="inputField"><b>Address(Area & Street)<sup>*</sup></b></label>
+                <textarea class="form-control" id="inputAddress" rows="3" formControlName="address"></textarea>
+                <div
+                  *ngIf="addressForm.controls['address'].invalid && (addressForm.controls['address'].dirty || addressForm.controls['address'].touched)"
+                  class="alert alert-warning">
+                  <div *ngIf="addressForm.controls['address'].errors.required">This Field is required</div>
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="inputLandmark" id="inputField"><b>Landmark(Optional)</b></label>
+                <input type="text" class="form-control" id="inputLandmark" formControlName="landmark">
+                <div
+                  *ngIf="addressForm.controls['landmark'].invalid && (addressForm.controls['landmark'].dirty || addressForm.controls['landmark'].touched)"
+                  class="alert alert-warning">
+                  <div *ngIf="addressForm.controls['landmark'].errors.required">This Field is required</div>
+                </div>
+              </div>
+
+              <div class="form-group col-md-4">
+                <label for="inputState" id="inputField"><b>State<sup>*</sup></b></label>
+                <select id="inputState" class="form-control" formControlName="state">
+                  <option selected>Odisha</option>
+                  <option selected>Jharkhand</option>
+                  <option selected>Bihar</option>
+                  <option selected>Chhattisgarh</option>
+                  <option selected>Madhya Pradesh</option>
+                </select>
+                <div
+                  *ngIf="addressForm.controls['state'].invalid && (addressForm.controls['state'].dirty || addressForm.controls['state'].touched)"
+                  class="alert alert-warning">
+                  <div *ngIf="addressForm.controls['state'].errors.required">This Field is required</div>
+                </div>
+              </div>
+              <div class="form-group col-md-2">
+                <label for="inputZip" id="inputField"><b>PinCode<sup>*</sup></b></label>
+                <input type="number" class="form-control" id="inputZip" formControlName="pinCode">
+                <div
+                  *ngIf="addressForm.controls['pinCode'].invalid && (addressForm.controls['pinCode'].dirty || addressForm.controls['pinCode'].touched)"
+                  class="alert alert-warning">
+                  <div *ngIf="addressForm.controls['pinCode'].errors.required">This Field is required</div>
+                  <div *ngIf="addressForm.controls['pinCode'].errors.pattern">pinCode must be 6 Digits</div>
+                </div>
+              </div>
+            </div>
+            <div class="text-left">
+              <label for="addressType" id="inputField"><b>Address Type<sup>*</sup></b></label><br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="addressType" id="inlineRadio1" value="option1"
+                  formControlName="addressType">&nbsp;&nbsp;
+                <label class="form-check-label"
+                  for="inlineRadio1">Home</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                  value="option2">&nbsp;&nbsp;
+                <label class="form-check-label" for="inlineRadio2">Work</label>
+              </div>
+            </div>
+            <br>
+
+
+          </div>
+        </div>
+        <div class="modal-footer">
+
+          <a href="#exampleModalCenter" data-toggle="modal" data-dismiss="modal" class="btn btn-info">Previous</a>
+          <button data-toggle="modal" data-dismiss="modal" class="btn btn-success" (click)="addNewAddress()"
+            [disabled]="!addressForm.valid">Save</button>
+
+        </div>
+
+      </div>
+    </div>
+  </form>
+</div>
+
+
+<div class="modal fade right" id="sideModalTR" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+
+  <div class="modal-dialog modal-side modal-top-right" role="document">
+
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="profileImage row">
+          <img src="../../assets/img/avatar.svg" width="80px" height="80px">
+        </div>
+
+      </div>
+      <div class="modal-body">
+        <div style="text-align: center;">
+          <h5>{{userName}}</h5>
+        </div>
+        <div style="text-align: center;">
+          <h6>{{emailId}}</h6>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="logOut()">Log Out</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+  aria-hidden="true">
+  <div class="modal-dialog notification" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Notification</h5>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div *ngFor="let data of visitingMessage ;let i=index" style="width:100%;">
+
+            <div class="card-header row">
+              <div class="col-md-10 addressType">
+                {{data[5]}}
+              </div>
+              <div class="col-md-2">
+                <div class="row">
+                  <h6 style="float: right;">Date</h6>
+                </div>
+                <div class="row">
+                  {{data[8]}}
+                </div>
+              </div>
+            </div>
+
+
+            <div class="card-body" style="width: 100%;">
+              <h5 class="card-title">{{data[1]}} {{data[2]}} {{data[4]}}</h5>
+              <p class="card-text">{{data[3]}}</p>
+              <h6 style="color: rgb(13, 128, 2);">Visting Message</h6>
+              <p>{{data[7]}}</p>
+              <p *ngIf="open(data[6])" class="status1">Open</p>
+              <p *ngIf="accepted(data[6])" class="status2">Accepeted</p>
+              <p *ngIf="completed(data[6])" class="status3">Completed</p>
+              <p *ngIf="visited(data[6])" class="status4">Visited</p>
+            </div>
+
+
+
+          </div>
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a style="text-align: center;" router>See All</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade modal-dialog-scrollable" id="portfolio" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg portfolio" role="document">
+    <div class="modal-content portfolioContent">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div *ngFor="let data of portfolioData ;let i=index" style="width:95%;">
+
+            <div class="card-header row">
+              <div class="col-md-10 addressType">
+                {{data.productType}}
+              </div>
+              <div class="col-md-2">
+                <div class="row">
+                  <h6 style="float: right;">Date</h6>
+                </div>
+                <div class="row">
+                  {{data.localDate}}
+                </div>
+              </div>
+            </div>
+            <div class="card-body" style="width: 100%;">
+              <h5 class="card-title">{{data.productName}} {{data.companyName}} {{data.modelNumber}}</h5>
+              <p class="card-text">{{data.description}}</p>
+              <p *ngIf="open(data.status)" class="status1">Open</p>
+              <p *ngIf="accepted(data.status)" class="status2">Accepeted</p>
+              <p *ngIf="completed(data.status)" class="status3">Completed</p>
+              <p *ngIf="visited(data.status)" class="status4">Visited</p>
+            </div>
+
+
+
+          </div>
+
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="getPortfolioDetails()">View
+          Details</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" id="ViewDetails" role="dialog"
+  aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="card-header row">
+        <h4>View Details About services</h4>
+      </div>
+      Electronic(analog or digital) equipment intended for everyday use, typically in private homes.We provide service
+      for Consumer electronics which includes devices used for entertainment (flatscreen TVs, DVD players, video games,
+      remote control cars, etc.), communications (telephones, cell phones, e-mail-capable laptops, etc.), and
+      home-office activities (e.g., desktop computers, printers, paper shredders, etc.).
+    </div>
+  </div>
+</div>
+
+
+
+<div *ngIf=!view class="container">
+  <h3>Portfolio Details</h3>
+
+  <div class="container d-sm-flex justify-content-between">
+    <div class="row">
+      <div class="col-md-4" *ngFor="let data of portfolioData;index as i">
+        <div class="card px-2 mt-3" style="height: 100%;">
+          <div class="card-header bg-white">
+            <div class="row justify-content-between">
+              <div class="col">
+                <p class="text-muted"> Order ID <span
+                    class="font-weight-bold text-dark">{{potfolioDetails1[i][0]}}</span></p>
+                <p class="text-muted"> Placed On <span
+                    class="font-weight-bold text-dark">{{potfolioDetails1[i][12]}}</span> </p>
+              </div>
+
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="media flex-column flex-sm-row">
+              <div class="media-body ">
+                <h5 class="bold">{{potfolioDetails1[i][2]}}</h5>
+                <p><strong> {{potfolioDetails1[i][1]}} {{potfolioDetails1[i][5]}}</strong></p>
+                <p class="text-muted">{{potfolioDetails1[i][3]}}</p>
+                <h6 class="mt-3 mb-4 bold" *ngIf="totalAmount(data.payment)"> <span
+                    class="mt-5">&#x20B9;</span>{{data.payment.totalAmount}}</h6>
+                <h6 class="mt-3 mb-4 bold" *ngIf="!totalAmount(data.payment)"> <span class="mt-5">&#x20B9;</span>0</h6>
+                <p class="text-muted">Tracking Status on: <span class="Today">{{ now | date:'medium' }}, Today</span>
+                </p>
+                <button type="button" class="btn btn-outline-primary status" *ngIf="open(data.status)">Open</button>
+                <button type="button" class="btn btn-outline-info status"
+                  *ngIf="accepted(data.status)">Accepeted</button>
+                <button type="button" class="btn btn-outline-success status"
+                  *ngIf="completed(data.status)">Completed</button>
+                <button type="button" class="btn btn-outline-success dark status"
+                  *ngIf="visited(data.status)">Visited</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="row px-3">
+            <div class="col">
+              <ul id="progressbar1">
+                <li *ngIf="accepted(data.status) || visited(data.status) || completed(data.status)"
+                  class="step0 active " id="step1">Process</li>
+                <li *ngIf="!(accepted(data.status) || visited(data.status) || completed(data.status))" class="step0"
+                  id="step1">Process</li>
+                <li *ngIf="visited(data.status) || completed(data.status)" class="step0 active text-center" id="step2">
+                  Visited</li>
+                <li *ngIf="!(visited(data.status) || completed(data.status))" class="step0 text-center" id="step2">
+                  Visited</li>
+                <li *ngIf="completed(data.status)" class="step0 active text-muted text-right" id="step3">Completed</li>
+                <li *ngIf="!completed(data.status)" class="step0 text-muted text-right" id="step3">Completed</li>
+              </ul>
+            </div>
+          </div>
+          <div class="card-footer bg-white px-sm-3 pt-sm-4 px-0">
+            <div class="row text-center ">
+              <div class="col my-auto border-line ">
+
+              </div>
+              <div class="col my-auto  ">
+                <h5 data-toggle="modal" data-target="#exampleModalCenter1" (click)="requestDetails(data,i)">View Details
+                </h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+<div *ngIf="serviceRequest;" class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog"
+  aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+
+
+    <div class="modal-content">
+
+      <div class="row card-header addressType">
+        <div class="col-md-4">
+          <p class="text-muted"> Order ID <span class="font-weight-bold text-dark">{{request.serviceRequestId}}</span>
+          </p>
+          <p class="text-muted"> Placed On <span class="font-weight-bold text-dark">{{request.localDate}}</span> </p>
+        </div>
+        <div class="col-md-4" style="text-align: center;">
+          Service Request Details
+        </div>
+        <div class="col-md-3">
+          <div *ngIf="request.status=='COMPLETED' && request.payment.paymentStatus=='COMPLETED'" class="col-md-4">
+            <button type="button" class="btn btn-outline-success" data-dismiss="modal"
+              (click)="getInvoice(request.serviceRequestId)">Get Invoice Details</button>
+          </div>
+        </div>
+        <div class="col-md-1">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      </div>
+
+
+
+      <div class="modal-body">
+
+        <div class="container tracking">
+          <div class="card">
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="card" style="border: white;">
+                  <div class="card-header addressType">
+                    {{request.productType}}
+                  </div>
+                  <div class="card-body">
+                    <h5 class="card-title">{{request.productName}}</h5>
+                    <h6 class="card-title">{{request.companyName}} {{request.modelNumber}}</h6>
+                    <p class="card-text">{{request.description}}</p>
+
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="card" style="border: white;">
+                  <div class="card-header addressType">
+                    Address
+                  </div>
+                  <div class="card-body">
+                    <p class="card-text">{{potfolioDetails1[j][9]}}</p>
+                    <p>{{potfolioDetails1[j][8]?.split(',')[1]}} {{potfolioDetails1[j][8]?.split(',')[0]}}</p>
+                    <p style="font-weight: bolder ;">{{potfolioDetails1[j][8]?.split(',')[2]}} ,
+                      {{potfolioDetails1[j][8]?.split(',')[3]}} {{potfolioDetails1[j][10]}}</p>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row" *ngIf="techData!=null">
+              <div class="col-sm">
+                <div class="card" style="border: white;">
+                  <div class="card-header addressType">
+                    Technician Details
+                  </div>
+                  <div class="card-body">
+                   
+                    <div class="table-responsive">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email Id</th>
+                            <th scope="col">Contact Number</th>
+                            <th scope="col">Qualification</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr class="bg-success">
+                            <td>{{techData.firstName}} {{techData.lastName}}</td>
+                            <td>{{techData.email}}</td>
+                            <td>{{techData.phone_Number}}</td>
+                            <td>{{techData.qualification}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+            <div class="row d-flex justify-content-center">
+              <div class="col-12">
+                <ul id="progressbar" class="text-center">
+                  <li *ngIf="accepted(request.status) || visited(request.status) || completed(request.status)"
+                    class="active step0"></li>
+                  <li *ngIf="!(accepted(request.status) || visited(request.status) || completed(request.status))"
+                    class=" step0"></li>
+                  <li *ngIf="visited(request.status) || completed(request.status)" class="active step0"></li>
+                  <li *ngIf="!(visited(request.status) || completed(request.status))" class=" step0"></li>
+                  <li *ngIf="completed(request.status)" class="active step0"></li>
+                  <li *ngIf="!completed(request.status)" class=" step0"></li>
+                </ul>
+              </div>
+
+            </div>
+            <div class="row justify-content-between top1">
+              <div class="row d-flex icon-content"> <img class="icon" src="https://i.imgur.com/9nnc9Et.png">
+                <div class="d-flex flex-column">
+                  <p class="font-weight-bold">Order<br>Processed</p>
+                </div>
+              </div>
+              <div class="row d-flex icon-content"> <img class="icon" src="https://i.imgur.com/u1AzR7w.png">
+                <div class="d-flex flex-column">
+                  <p class="font-weight-bold">Order<br>Visited</p>
+                </div>
+              </div>
+              <div class="row d-flex icon-content"> <img class="icon" src="https://i.imgur.com/TkPm63y.png">
+                <div class="d-flex flex-column">
+                  <p class="font-weight-bold">Order<br>completed</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

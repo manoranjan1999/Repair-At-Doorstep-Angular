@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap');
+body{
+    background-color: #25274d;
+}
+
+.col-md-3{
+    background: #007bff;
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+    
+}
+.contact-info{
+    margin-top:10%;
+    color: white;
+}
+.contact-info img{
+    margin-bottom: 15%;
+}
+.contact-info h2{
+    margin-bottom: 10%;
+}
+.contact-info h4{
+    font-family: 'Dancing Script', cursive;  
+}
+.col-md-9{
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    
+}
+
+.contact-form {
+    margin: 2%;
+}
+.contact-form label{
+    font-weight:600;
+    margin-left:2%;
+}
+.contact-form button{
+    color: #fff;
+    font-weight: 600;
+    width: 25%;
+}
+.contact-form button:focus{
+    box-shadow:none;
+}

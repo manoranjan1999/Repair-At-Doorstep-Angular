@@ -1,0 +1,86 @@
+<div class="container">
+  <form class="registration-form" [formGroup]="signUpForm">
+    <div class="form-header">
+      <img src="../../assets/img/avatar.svg">
+      <h2 class="title"><b>Create An Account</b></h2>
+      <p class="user-notification">This page will help RAYD know about you.</p>
+    </div>
+    <div class="content">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputfirstname" id="inputField"><b>FirstName<sup>*</sup></b></label>
+          <input type="text" class="form-control" id="inputfirstname" placeholder="Enter FirstName.."
+            formControlName="firstName" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }">
+          <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+            <div *ngIf="f.firstName.errors.required">First Name is required</div>
+          </div>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputlastname" id="inputField"><b>LastName<sup>*</sup></b></label>
+          <input type="text" class="form-control" id="inputlastname" placeholder="Enter LastName.."
+            formControlName="lastName" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }">
+          <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+            <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputEmail" id="inputField"><b>Email<sup>*</sup></b></label>
+        <input type="email" class="form-control" id="inputEmail4" placeholder="Enter Email" formControlName="email"
+          [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+          <div *ngIf="f.email.errors.required">Email is required</div>
+          <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputpassword" id="inputField"><b>Password<sup>*</sup></b></label>
+          <input type="password" class="form-control" id="inputPassword4" placeholder="Enter Password"
+            formControlName="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+          <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+            <div *ngIf="f.password.errors.required">Password is required</div>
+            <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+          </div>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputRetypePassword" id="inputField"><b>Retype Password<sup>*</sup></b></label>
+          <input type="password" class="form-control" id="inputRetypePassword4" placeholder="Retype Password"
+            formControlName="rePassword" [ngClass]="{ 'is-invalid': submitted && f.rePassword.errors }">
+          <div *ngIf="submitted && f.rePassword.errors" class="invalid-feedback">
+            <div *ngIf="f.rePassword.errors.required">Password is required</div>
+            <div *ngIf="f.rePassword.errors.minlength">Password must be at least 6 characters</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputphoneno" id="inputField"><b>Phone Number<sup>*</sup></b></label>
+          <input type="text" class="form-control" id="inputphoneno" placeholder="Enter phone number.."
+            formControlName="phoneNumber" [ngClass]="{ 'is-invalid': submitted && f.phoneNumber.errors }">
+          <div *ngIf="submitted && f.phoneNumber.errors" class="invalid-feedback">
+            <div *ngIf="f.phoneNumber.errors.required">phoneNumber is required</div>
+            <div *ngIf="f.phoneNumber.errors.pattern">phoneNumber must be at least 10 Digits</div>
+          </div>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputrole" id="inputField"><b>Choose Role<sup>*</sup></b></label>
+          <select id="inputUserRole" class="form-control" formControlName="role"
+            [ngClass]="{ 'is-invalid': submitted && f.role.errors }">
+            <option selected>none</option>
+            <option>Service Provider</option>
+            <option>Customer</option>
+          </select>
+          <div *ngIf="submitted && f.role.errors" class="invalid-feedback">
+            <div *ngIf="f.role.errors.required">Role is required</div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary" [disabled]="loading" (click)="set()">Continue</button><br>
+        <a class="alreadyAcc" routerLink="/loginpage" routerLinkActive="active">Already have an Account?</a>
+      </div>
+    </div>
+  </form>
+</div>

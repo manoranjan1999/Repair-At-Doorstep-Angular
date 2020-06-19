@@ -1,0 +1,63 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item"><a href="#">Service Provider</a></li>
+    <li class="breadcrumb-item active" aria-current="page">My Dashboard</li>
+  </ol>
+</nav>
+<div class="card">
+  <div class="card-header">
+    <h2>My Organisation Profile</h2>
+  </div>
+
+  <div class="text-left" id="spProfile">
+    <h5 class="card-title" id="spCardTitle"><i class="fas fa-store"></i><label for="name" id="profile">Name :</label>
+      {{serviceProviderProfile.serviceProviderName}}</h5>
+    <p class="card-text" id="spCardText"><i class="fas fa-envelope"></i><label for="Email" id="profile">Email :</label>
+      {{serviceProviderProfile.emailId}}</p>
+    <p class="card-text" id="spCardText"><i class="fas fa-toggle-on"></i><label for="status" id="profile">Status
+        :</label> {{serviceProviderProfile.status}}</p>
+  </div>
+
+  <div class="card-header">
+    <h2>My Address</h2>
+  </div>
+
+  <div class="row row-cols-1 row-cols-sm-2">
+    <div *ngFor="let serviceProviderAddress of serviceProviderProfile.address; let i=index;">
+      <div class="col mb-4">
+        <div class="card" id="address_card">
+          <img src="../../assets/img/locationsp.svg" class="card-img-top" alt="...">
+          <div class="card-body" id="cardBody">
+            <h5 class="card-title" id="spAddress">Address {{i+1}}</h5>
+            <p id="spAddress">{{serviceProviderAddress.currentLocation}}, {{serviceProviderAddress.completeAddress}},
+              {{serviceProviderAddress.pinCode}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="card-header">
+    <div class="d-flex">
+      <h2 class="align-self-center">My Services</h2>
+      <div class="ml-auto p-2">
+        <div class="d-flex">
+          <input #productName type="text" class="form-control mr-2" id="inputProductName"
+            placeholder="Enter product name">
+          <i class="fas fa-plus-circle mt-1" id="addProduct" (click)="addProductName(productName.value)"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex align-content-end flex-wrap">
+    <div *ngFor="let serviceProviderService of serviceProviderProfile.category">
+
+      <a class="card-text" *ngFor="let c of serviceProviderService.productName?.split(',')">
+        <button class="btn btn-info" style="margin: 2px;">{{c}}</button>
+      </a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,47 @@
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#">Home</a></li>
+      <li class="breadcrumb-item"><a href="#">Service Provider</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Technicians</li>
+    </ol>
+  </nav>
+
+  <div class="card">
+    <div class="card-header">
+      <div class="d-flex">
+        <h2 class="align-self-center">My Technicians</h2>
+        <div class="ml-auto p-2">
+          <a routerLink="addtechnician" routerLinkActive="active"><i class="fas fa-plus-square" id="addTechnician"></i></a>
+
+        </div>
+      </div>
+      
+    </div>
+    <div class="card-body">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-sm-3 row-cols-sm-4">
+        <div *ngFor = "let serviceProviderTechie of spObj.technician">
+        <div class=" col mb-4">
+                <div class="card hovercard">
+                    <div class="cardheader"></div>
+                    <div class="avatar">
+                        <img alt="" src="../../assets/img/techie.jpg">
+                    </div>
+                    <div class="info">
+                        <div class="title">
+                            <a target="_blank" >{{serviceProviderTechie.firstName}} {{  serviceProviderTechie.lastName}}</a>
+                        </div>
+                        <div class="desc"><i class="fas fa-book-reader"> Education: </i>{{  serviceProviderTechie.qualification}}</div>
+                        <div class="desc"><i class="fas fa-envelope"> Email: </i>{{serviceProviderTechie.email}}</div>
+                        <div class="desc"><i class="fas fa-mobile-alt"> Phone: </i>{{serviceProviderTechie.phone_Number}}</div>
+                        <div class="desc"><i class="fas fa-map-marker-alt"> Address: </i>{{serviceProviderTechie.address}}</div>
+                    </div>
+                </div>
+    
+        </div>
+      </div>   
+      </div>
+    </div>
+  </div>
+
+  

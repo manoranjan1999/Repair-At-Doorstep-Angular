@@ -1,0 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+
+.feedback_Text {
+    margin-top: 17%;
+}
+
+.card-header {
+    font-family: 'Righteous', cursive;
+    font-size: larger;
+    color: orange;
+}
+.rating-wrapper {
+    direction: rtl;
+}
+
+.rating-wrapper input {
+   display: none;
+}
+
+.rating-wrapper label {
+    width: 90px;
+    position: relative;
+    cursor: pointer;
+    margin-bottom: 0%;
+    margin-left: 2px;
+}
+
+.rating-wrapper label:before {
+    content: "\2605";
+    position: absolute;
+    font-size: 60px;
+    left: 0;
+    top: 0;
+    color: silver;
+}
+
+.rating-wrapper label:after {
+    content: "\2605";
+    position: absolute;
+    font-size: 60px;
+    left: 0;
+    top: 0;
+    color: yellow;
+    opacity: 0;
+}
+
+.rating-wrapper label:hover:after, 
+.rating-wrapper label:hover ~ label:after,
+.rating-wrapper input:checked ~ label:after {
+    opacity: 1;
+} 
+
+.card {
+    margin-top: 4%;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}

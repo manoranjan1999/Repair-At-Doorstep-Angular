@@ -1,0 +1,65 @@
+.description{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.accept{
+    float: right;
+    color: green !important;
+}
+
+.summary:hover{
+    box-shadow: 2px 2px 11px 0px;
+}
+.update:hover,.viewDetail:hover{
+    box-shadow: 2px 2px 11px 0px;
+}
+.update:hover{
+    box-shadow: 2px 2px 11px 0px;
+}
+.status1{
+    float: right;
+    color: green;
+}
+.status2{
+    float: right;
+    color: blue;
+    
+}
+.status3{
+    float: right;
+    color: orangered;
+   
+}
+.refresh{
+    position: fixed;
+     float: right;
+     right: 0px;
+     z-index: 1;
+     bottom: 50%;
+     transition: 1.5s;
+     padding-right: 30px;
+    background-color: yellowgreen;
+     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+   
+ }
+ .refresh:hover{
+    transition: .8s;
+     padding-right: 40px;
+     border-radius: 0% 0% 0% 30%;
+     box-shadow: 0px 0px 0px 0px;
+ }
+ .plus,.minus{
+     margin: 5px;
+     float: right;
+ }
+ .plus:hover,.minus:hover{
+    font-size: 20px;
+    
+}
+.plus{
+    color: rgb(43, 255, 0);
+}
+.minus{
+    color: rgb(255, 81, 0);
+}

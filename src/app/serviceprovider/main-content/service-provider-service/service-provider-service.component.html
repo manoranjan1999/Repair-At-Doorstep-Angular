@@ -1,0 +1,218 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item"><a href="#">Service Provider</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Service</li>
+  </ol>
+</nav>
+<button class="btn btn-light refresh" (click)="upadteStatus()" data-toggle="tooltip" data-placement="top"
+  title="Refresh to Check Status">Refresh</button>
+
+<div class="row">
+  <div *ngFor="let service of servicesRequest" class="col-sm-5" style="margin-bottom: 10px;padding: 20px;">
+    <div class="card summary">
+      <div class="card-header addressType">
+        {{service[6]}}
+        <p class="status1" *ngIf="accepted(service[7])">Accepeted</p>
+        <p class="status2" *ngIf="completed1(service[7])">Completed</p>
+        <p class="status3" *ngIf="visited1(service[7])">Visited</p>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">{{service[12]}} {{service[13]}}</h5>
+        <h6 class="card-title">{{service[2]}} {{service[1]}} {{service[5]}}</h6>
+        <p class="card-text description"> {{service[3]}}.</p>
+      </div>
+      <div class="card-footer bg-transparent border-success">
+        <a (click)="details(service)" class="btn btn-light update" data-toggle="modal" data-target="#update"
+          style="float: right;">Update</a>
+        <a (click)="details(service)" data-toggle="modal" data-target="#centralModalSm"
+          class="btn btn-light viewDetail">View Details</a>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div *ngIf="view" class="modal fade  " id="centralModalSm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+
+  <div class="modal-dialog modal-lg viewDetails modal-side modal-top-right" role="document">
+
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title w-100" id="myModalLabel">Problem Request Details</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <div class="row">
+          <div class="col-sm">
+            <div class="card" style="border: white;">
+              <div class="card-header addressType">
+                {{service[6]}}
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">{{service[2]}}</h5>
+                <h6 class="card-title">{{service[1]}} {{service[5]}}</h6>
+                <p class="card-text">{{service[3]}}</p>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="card" style="border: white;">
+              <div class="card-header addressType">
+                Customer Details
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">{{service[12]}} {{service[13]}}</h5>
+                <p class="card-text">Email: {{service[14]}}</p>
+                <p class="card-text">Contact: {{service[15]}}</p>
+
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="card" style="border: white;">
+              <div class="card-header addressType">
+                Address
+              </div>
+              <div class="card-body">
+                <p class="card-text">{{service[9]}}</p>
+                <p>{{service[8]?.split(',')[1]}} {{service[8]?.split(',')[0]}}</p>
+                <p style="font-weight: bolder;">{{service[8]?.split(',')[2]}} , {{service[8]?.split(',')[3]}}
+                  {{service[10]}}</p>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="update" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+  <div class="modal-dialog modal-lg viewDetails modal-side modal-top-right" role="document">
+
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title w-100" id="myModalLabel">Update Status</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="statusForm">
+
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">Select Status</label>
+            <select class="form-control" id="exampleFormControlSelect1" (click)="visit()" formControlName="status">
+              <option value="technician">Assign Technician</option>
+              <option value="visit">Visted</option>
+              <option value="reVisit">Re-Visit</option>
+              <option value="complete">Completed</option>
+            </select>
+          </div>
+
+          <div *ngIf="visited" class="card" style="border: white;">
+            <div class="card-header addressType">
+              Visiting Details
+            </div>
+            <div class="card-body">
+              <div class="form-group">
+                <label for="exampleFormControlTextarea1">Review Message</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"
+                  formControlName="reviewMessage"></textarea>
+              </div>
+            </div>
+          </div>
+          <div *ngIf=completed class="card" style="border: white;">
+            <div class="card-header addressType">
+              Parts Details
+            </div>
+            <div class="card-body">
+              <div formArrayName="products" style="margin-bottom: 10px;" class="row">
+                <div *ngFor="let product of productFormGroup.controls; let i = index;">
+                  <div [formGroupName]="i" class="row">
+                    <div class="col-md-6">
+                      <label for="exampleInputEmail1">Parts Name</label>
+                      <input type="text" class="form-control" placeholder="Enter parts name" formControlName="parts">
+                    </div>
+                    <div class="col-md-3">
+                      <label>Price</label>
+                      <input type="number" class="form-control" placeholder="Enter price" formControlName="price">
+                    </div>
+                    <div class="col-md-3">
+                      <label>Qty</label>
+                      <input type="number" class="form-control" placeholder="Enter Quantity" formControlName="quantity">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <i class="fas fa-minus-square minus" (click)="removeProduct(i)"></i>
+              <i class="fas fa-plus-square plus" (click)="addProduct()"></i>
+
+              <div class="row">
+                <div class="col-md-6" style="margin-left: -30px;">
+                  <label>Services Charge</label>
+
+                  <input type="number" class="form-control" placeholder="Service charge"
+                    formControlName="serviceCharge">
+
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+          <div *ngIf="technician" class="card" style="border: white;">
+            <div class="card-header addressType">
+              Choose Technician
+            </div>
+            <div class="card-body">
+              <div class="form-group">
+                <label>Select Technician</label>
+                <select class="form-control" formControlName="tech">
+                  <option *ngFor="let i of serviceProviderProfile.technician;let j = index" value="{{i.technicianId}}">
+                    {{i.firstName}}
+                  </option>
+
+                </select>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="reVisit" class="card" style="border: white;">
+            <div class="card-header addressType">
+              Re-visiting Details
+            </div>
+            <div class="card-body">
+              <div class="form-group">
+                <label for="exampleFormControlTextarea1">Review Message</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"
+                  formControlName="revisitingMessage"></textarea>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" (click)="saveStatus()">Save</button>
+      </div>
+    </div>
+  </div>
+</div>

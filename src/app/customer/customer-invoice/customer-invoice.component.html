@@ -1,0 +1,100 @@
+<div id="invoice">
+    <div class="toolbar hidden-print">
+        <div class="text-center">
+            <button id="printInvoice" class="btn btn-primary mr-3" ><i class="fa fa-print"></i> Print</button>
+            <button class="btn btn-primary" (click)="generatePdf()"><i class="fa fa-file-pdf-o"></i> Export as PDF</button>
+        </div>
+        <hr>
+    </div>
+    <div class="invoice overflow-auto" id="invoiceForm">
+        <div class="container">
+            <header>
+                <div class="row">
+                    <div class="col">
+                        <a target="_blank" href="http://localhost:4200/addresspage">
+                            <img src="../../assets/img/logo.png" width="100" height="80" />
+                            </a>
+                    </div>
+                    <div class="col company-details">
+                         <h2 class="name">
+                            <a>Repair At Your DoorStep</a>
+                        </h2>
+                        <div>Bhubaneswar,</div>
+                        <div>825103,BBSR</div>
+                    </div>
+                </div>
+            </header>
+            <main>
+                <div class="row contacts">
+                    <div class="col invoice-to">
+                        <div class="text-gray-light">INVOICE TO:</div>
+                        <h2 class="to">{{invoiceDetails[0][7]}} {{ invoiceDetails[0][8]}}</h2>
+                        <div class="address">{{invoiceDetails[0][4]}} {{invoiceDetails[0][3]}}, {{invoiceDetails[0][5]}}</div>
+                        <div class="email"><a>{{invoiceDetails[0][9]}}</a></div>
+                    </div>
+                    <div class="col invoice-details">
+                        <h1 class="invoice-id">INVOICE</h1>
+                        <div class="date">Repair Id: {{invoiceDetails[0][0]}}</div>
+                        <div class="date">Due Date: {{date}}</div>
+                    </div>
+                </div>
+                <table border="0" cellspacing="0" cellpadding="0">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th class="text-left">PARTS</th>
+                            <th class="text-right">PRICE</th>
+                            <th class="text-right">QUANTITY</th>
+                            <th class="text-right">TOTAL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor = "let partsObj of invoiceDetails; let i=index;">
+                            <td class="no">{{i+1}}</td>
+                            <td class="text-left">
+                                <h3>{{partsObj[11]}}</h3>
+                                {{partsObj[15]}}
+                            </td>
+                            <td class="unit">₹{{partsObj[12]}}.00</td>
+                            <td class="qty">{{partsObj[14]}}</td>
+                            <td class="total">₹{{partsObj[12] * partsObj[14]}}.00</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="2"></td>
+                            <td colspan="2">SUBTOTAL</td>
+                            <td>₹{{subTotal}}.00</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"></td>
+                            <td colspan="2">Service Charge</td>
+                            <td>₹{{serviceCharge}}.00</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"></td>
+                            <td colspan="2">TAX 12%</td>
+                            <td>₹{{taxAmount}}.00</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"></td>
+                            <td colspan="2">GRAND TOTAL</td>
+                            <td>₹{{grandTotal}}.00</td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <div class="thanks">Thank you!</div>
+                <div class="notices">
+                    <div>NOTICE:</div>
+                    <div class="notice">A finance charge of 1.5% will be made on unpaid balances after 30 days.</div>
+                </div>
+            </main>
+            <footer>
+                Invoice was created on a computer and is valid without the signature and seal.
+            </footer>
+        </div>
+       
+        <div></div>
+    </div>
+</div>
+

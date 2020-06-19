@@ -1,0 +1,41 @@
+
+form {
+    padding: 100px;
+}
+img{
+    height: 100px;
+}
+.form-header {
+    text-align: center;
+    align-items: center;
+}
+.user-notification {
+    font-style: oblique;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgba(149, 150, 149);
+}
+.registration-form {
+      margin-top: 3%;
+      max-width: 100%;
+      background: #f8f9fa!important;;
+      padding: 30px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    
+
+}
+
+sup {
+    color: red;
+    font-size: large;
+}
+#inputField {
+    font-size: x-large;
+    font-family: monospace;
+    padding-top: 10px;
+}
+.title {
+    font-family: monospace;
+}
+.text-center {
+    padding-top: 6px;
+}

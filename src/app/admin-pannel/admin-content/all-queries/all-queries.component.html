@@ -1,0 +1,20 @@
+<div class="card mb-3" id="queryDiv" *ngFor="let query of queryObj; let i=index;">
+  <div class="card-header">
+    <span class="spName">{{query.serviceProviderName}}</span> <span class="queryDate"> reported on
+      {{   query.queryDate}}</span>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{query.queryTitle}}</h5>
+    <p class="card-text">"{{query.query}}"</p>
+    <hr>
+    <textarea #adminMailText class="form-control adminText" id="exampleFormControlTextarea1"
+      placeholder="Write mail here.. " rows="3"></textarea>
+    <button type="button" class="btn btn-primary mt-2"
+      (click)="sendMail(query.queryId, adminMailText.value)">Send</button>
+
+  </div>
+</div>
+
+<ngx-spinner size="medium" color="#fff" type="line-scale" [fullScreen]="true">
+  <p style="color: white"> Preparing to Download... </p>
+</ngx-spinner>

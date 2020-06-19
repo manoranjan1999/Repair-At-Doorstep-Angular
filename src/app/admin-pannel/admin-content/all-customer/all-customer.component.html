@@ -1,0 +1,72 @@
+<div class="row">
+  <div class="col-sm-6" style="margin-bottom: 10px;padding: 20px;" *ngFor="let all of customer">
+    <div class="card customer">
+      <div class="card-header addressType">
+        {{all.address[0].currentLocation}}
+      </div>
+      <div class="card-body">
+        <h5>{{all.firstName}} {{all.lastName}}</h5>
+        <p class="card-text">
+          Email: {{all.emailId}}
+        </p>
+        <p class="card-text"> Contact: {{all.phoneNumber}}</p>
+      </div>
+      <div class="card-footer bg-transparent border-success">
+        <a class="btn btn-light update" data-toggle="modal" data-target="#centralModalSm" style="float: right;"
+          (click)="details(all.address)">View Address</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="view" class="modal fade  " id="centralModalSm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+
+  Change class .modal-sm to change the size of the modal
+  <div class="modal-dialog modal-lg viewDetails modal-side modal-top-right" role="document">
+
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title w-100" id="myModalLabel">Service Provider Details</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <div class="row">
+          <div class="col-sm">
+            <div class="card" style="border: white;">
+              <div class="card-header addressType">
+                {{all.category[0].productType}}
+              </div>
+              <div *ngFor="let add of address" style="width:100%;">
+
+
+                <div class="card">
+                  <div class="card-header addressType">
+                    Home
+                  </div>
+                  <div class="card-body">
+                    <p class="card-text">{{add.currentLocation}}</p>
+                    <p>{{add.completeAddress?.split(',')[1]}} {{add.completeAddress?.split(',')[0]}}</p>
+                    <p style="font-weight: bolder;">{{add.completeAddress?.split(',')[2]}} ,
+                      {{add.completeAddress?.split(',')[3]}} {{add.pinCode}}</p>
+
+                  </div>
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

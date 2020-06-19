@@ -1,0 +1,42 @@
+<header>
+  <nav class="navbar navbar-light bg-light justify-content-between"
+    style="background-color: rgb(216, 216, 231) !important;">
+    <a class="navbar-brand" href="#">
+      <img src="../../assets/img/logo.png" width="55" height="40" class="d-inline-block align-top" alt="">
+      <h2 class="text">Repair At Your Doorstep</h2>
+    </a>
+    <form class="form-inline">
+      <div class="dropdown mr-2">
+
+        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          SignUp
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" id="customerSignUp" routerLink="/customersignup"
+            routerLinkActive="active">Customer</a>
+          <a class="dropdown-item" id="login" routerLink="/serviceProviderSignUp" routerLinkActive="active">Service
+            Provider</a>
+        </div>
+
+      </div>
+
+      <div class="dropdown mr-1">
+
+        <button style="margin-right: 80px;" class="btn btn-primary dropdown-toggle" type="button"
+          id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Login
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" id="customerSignUp" routerLink="/customerLogin"
+            routerLinkActive="active">Customer</a>
+          <a class="dropdown-item" id="login" routerLink="/adminLogin" routerLinkActive="active">Admin</a>
+          <a class="dropdown-item" id="login" routerLink="/ServiceProviderLogin" routerLinkActive="active">Service
+            Provider</a>
+        </div>
+
+      </div>
+
+    </form>
+  </nav>
+</header>

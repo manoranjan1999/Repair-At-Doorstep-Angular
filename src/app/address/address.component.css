@@ -1,0 +1,39 @@
+input[type=radio] {
+    border: 0px;
+    width: 1.5em;
+    height: 1.5em;
+    }
+    
+    button {
+    font-size: 25px;
+    }
+    
+    sup {
+    color: red;
+    font-size: large;
+    }
+    #inputField {
+    font-size: x-large;
+    font-family: monospace;
+    padding-top: 10px;
+    }
+    .title {
+    font-family: monospace;
+    }
+    .text-center {
+    padding-top: 6px;
+    }
+    
+    
+    img{
+    height: 100px;
+    width: 150px;
+    }
+    .address-form {
+    
+    max-width: 100%;
+    background: #f8f9fa!important;;
+    padding: 30px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    
+    }

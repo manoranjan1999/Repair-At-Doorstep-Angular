@@ -1,0 +1,94 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="localhost:4200">Home</a></li>
+        <li class="breadcrumb-item"><a routerLink="serviceprovider" routerLinkActive="active">Service Provider</a></li>
+        <li class="breadcrumb-item"><a routerLink="/technician" routerLinkActive="active">Technician</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Add Technician</li>
+    </ol>
+</nav>
+
+<div class="container register">
+    <div class="row">
+        <div class="col-md-3 register-left">
+            <img src="../../assets/img/logo_white.png" alt="bg image" />
+            <h3>Welcome<br /> Techies</h3>
+            <p>You are Few steps away from earning your own money!</p>
+            <br />
+        </div>
+        <div class="col-md-9 register-right">
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <h3 class="register-heading">Register as a Techie</h3>
+                    <div class="register-form">
+                        <form [formGroup]="technicianForm">
+                            <div class="row form-group">
+                                <div class="col-md">
+                                    <label>First Name <sup>*</sup> </label><br>
+                                    <input type="text" class="form-control" [(ngModel)]="technicianObj.firstName"
+                                        formControlName="firstName" placeholder="Your first name " id="fName1"
+                                        name="tFirstName" value="" autocomplete="off">
+                                    <div *ngIf="technicianForm.controls.firstName.touched && !technicianForm.controls.firstName.valid"
+                                        class="alert alert-danger">Firstname is required.</div>
+
+                                </div>
+                                <div class="col-md">
+                                    <label>Last Name <sup>*</sup> </label><br>
+                                    <input type="text" class="form-control" [(ngModel)]="technicianObj.lastName"
+                                        formControlName="lastName" placeholder="your last name " id="lName1"
+                                        name="tLastName" value="" autocomplete="off">
+                                    <div *ngIf="technicianForm.controls.lastName.touched && !technicianForm.controls.lastName.valid"
+                                        class="alert alert-danger">Lastname is required.</div>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-md">
+                                    <label>Qualification<sup>*</sup> </label><br>
+                                    <input type="text" class="form-control" [(ngModel)]="technicianObj.qualification"
+                                        formControlName="qualification" placeholder="Your Qualification" id="lQual1"
+                                        name="tQualification" value="" autocomplete="off">
+                                    <div *ngIf="technicianForm.controls.qualification.touched && !technicianForm.controls.qualification.valid"
+                                        class="alert alert-danger">This field is required.</div>
+                                </div>
+                                <div class="col-md">
+                                    <label>Email<sup>*</sup> </label><br>
+                                    <input type="email" class="form-control" [(ngModel)]="technicianObj.email"
+                                        formControlName="email" placeholder="abc@gmail.com" id="lEmail1" name="tEmail"
+                                        value="" autocomplete="off">
+                                    <div *ngIf="technicianForm.controls.email.touched && !technicianForm.controls.email.valid"
+                                        class="alert alert-danger">This field is required.</div>
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-md">
+                                    <label>Phone No.<sup>*</sup> </label><br>
+                                    <input type="number" class="form-control" [(ngModel)]="technicianObj.phone_Number"
+                                        formControlName="phone_Number" placeholder="Your phone number.." id="lPh1"
+                                        name="tPh" value="" autocomplete="off">
+                                    <div *ngIf="technicianForm.controls.phone_Number.touched && !technicianForm.controls.phone_Number.valid"
+                                        class="alert alert-danger">This field is required.</div>
+
+                                </div>
+
+                                <div class="col-md">
+                                    <label>Address<sup>*</sup> </label><br>
+                                    <input type="text" class="form-control" [(ngModel)]="technicianObj.address"
+                                        formControlName="address" placeholder="st maria street, 172026" id="lAddress1"
+                                        name="tAddress" value="" autocomplete="off">
+                                    <div *ngIf="technicianForm.controls.address.touched && !technicianForm.controls.address.valid"
+                                        class="alert alert-danger">This field is required.</div>
+
+                                </div>
+                            </div>
+
+                            <input type="submit" class="btn btn-primary btn-lg btnRegister"
+                                [disabled]="technicianForm.invalid" value="Register" (click)="sendTechieData()" />
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>

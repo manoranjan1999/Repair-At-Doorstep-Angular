@@ -1,0 +1,33 @@
+
+.text {
+    font-size:2vw;
+    font-family: 'Archivo Black', sans-serif;
+    color: orange;
+}
+img, .text {
+    display: inline;
+}
+nav{
+  overflow: hidden;
+  background-color: #333;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+  
+}
+.list-group .list-group-item {
+    font-size: 18px;
+    font-family: monospace;
+    width: 100%;
+    height: 100%;
+    transition: .4s;
+}
+
+.list-group-item:hover{
+    padding-left: 50px;
+}
+
+.list-group .list-group-item i {
+    margin-right: 16px;
+}

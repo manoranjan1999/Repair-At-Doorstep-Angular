@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Fjalla+One&family=Lato:ital@1&display=swap');
+
+.spName {
+    font-size: larger;
+    font-weight: 900;
+    text-transform: capitalize;
+}
+.queryDate {
+    color: #586069!important;
+}
+.card-header {
+    font-family: monospace;
+}
+.card-text {
+    font-family: 'Lato', sans-serif;
+}
+.card-title {
+    font-size: medium;
+    font-family: 'Fjalla One', sans-serif;
+}

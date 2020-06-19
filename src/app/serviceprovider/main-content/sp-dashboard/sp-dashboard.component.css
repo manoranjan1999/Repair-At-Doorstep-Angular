@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Ubuntu+Condensed&display=swap');
+
+h2 {
+    font-family: monospace;
+}
+
+#cardBody {
+    background-color: #007bff;
+    color: white;
+     box-shadow: 0 0 10px rgba(0,0,0,0.2); 
+}
+
+#spProfile {
+    margin-left: 5%;
+}
+
+#spCardText {
+    padding: 8px;  
+}
+
+#spCardText, #spCardTitle {
+    font-family: 'Ubuntu Condensed', sans-serif;
+    font-size: larger;
+    padding: 5px;
+}
+
+#profile {
+    font-family: 'Anton';
+    font-size : 18px;
+}
+
+#spCardText i, #spCardTitle i {
+    color: #007bff;
+    margin-right: 10px;
+    padding: 2px;
+}
+
+#spProfile {
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+img {
+    height: 200px;
+    
+}
+.card-img-top {
+    width: 100%;
+}
+#address_card {
+    margin: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+#productInfo {
+    margin-top: 23px;
+    margin-left: 23px;
+    margin-right: 23px;
+    text-align: center;
+}
+#spAddress {
+    text-align: center;
+}
+
+#productInfo:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+.card-header h2 {
+    text-align: center;
+}
+
+#addProduct {
+    font-size: 30px;
+    color: #007bff;
+}
+
+#productInfo {
+    text-transform: uppercase;
+}
+
+@media (max-width: 576px) {  
+    .xs {color:red;font-weight:bold;}
+  }
+  
+  @media (min-width: 576px) and (max-width:768px) {  
+    .sm {color:red;font-weight:bold;}
+  }
+   
+  @media (min-width: 768px) and (max-width:992px) {  
+   .md {color:red;font-weight:bold;}
+  }
+   
+  @media (min-width: 992px) and (max-width:1200px) { 
+   .lg {color:red;font-weight:bold;}
+  }
+  @media (min-width: 1200px) {  
+      .xl {color:red;font-weight:bold;}
+  }
+   

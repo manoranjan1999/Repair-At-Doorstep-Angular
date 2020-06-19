@@ -1,0 +1,65 @@
+<body>
+  <div class="container">
+    <form class="registration-form" [formGroup]="serviceProviderForm">
+      <div class="form-header">
+        <img src="../../assets/img/avatar.svg">
+        <h2 class="title"><b>Request for Registration</b></h2>
+        <p class="user-notification">This page will help RAYD know about you.</p>
+      </div>
+      <div class="content">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputfirstname" id="inputField"><b>Service Provider Name<sup>*</sup></b></label>
+            <input type="text" class="form-control" id="inputfirstname" placeholder="Enter FirstName.."
+              formControlName="serviceProviderName"
+              [ngClass]="{ 'is-invalid': submitted && f.serviceProviderName.errors }">
+            <div *ngIf="submitted && f.serviceProviderName.errors" class="invalid-feedback">
+              <div *ngIf="f.serviceProviderName.errors.required">Serviceprovider Name is required.</div>
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputEmail" id="inputField"><b>Email<sup>*</sup></b></label>
+            <input type="email" class="form-control" id="inputEmail4" placeholder="Enter Email" formControlName="email"
+              [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+              <div *ngIf="f.email.errors.required">Email is required</div>
+              <div *ngIf="f.email.errors.email">Please enter a valid email address</div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputProductName" id="inputField"><b>Product Name<sup>*</sup></b></label>
+            <input type="text" class="form-control" id="inputProductName" placeholder="TV, Phone, ...."
+              formControlName="productName" [ngClass]="{ 'is-invalid': submitted && f.productName.errors }">
+            <div *ngIf="submitted && f.productName.errors" class="invalid-feedback">
+              <div *ngIf="f.productName.errors.required">This field is required</div>
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputProductType" id="inputField"><b>Product Type<sup>*</sup></b></label>
+
+            <select id="inputProductType" class="form-control" formControlName="productType"
+              [ngClass]="{ 'is-invalid': submitted && f.productType.errors }">
+              <option>Electronics</option>
+              <option>Plumber</option>
+              <option>Mechanic</option>
+              <option>Tailoring</option>
+            </select>
+            <div *ngIf="submitted && f.productType.errors" class="invalid-feedback">
+              <div *ngIf="f.productType.errors.required">This field is required</div>
+            </div>
+          </div>
+        </div>
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary" [disabled]="Loading" (click)="set()">Continue</button><br>
+          <a class="alreadyAcc" routerLink="/loginPage" routerLinkActive="active">Already have an Account?</a>
+        </div>
+      </div>
+    </form>
+
+  </div>
+
+</body>

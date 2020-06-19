@@ -1,0 +1,91 @@
+<div class="container p-3 my-3 ">
+  <form class="address-form" [formGroup]="addressForm">
+    <div class="text-center">
+      <img src="../../assets/img/address2.svg">
+      <h2 class="title"><b>Manage Address</b></h2>
+      <p class="user-notification">This page will help RAYD know about you.</p>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputLocality" id="inputField"><b>Locality<sup>*</sup></b></label>
+        <input type="text" class="form-control" id="inputLocality" placeholder="1234 Main bazar.."
+          formControlName="locality" [ngClass]="{ 'is-invalid': submitted && f.locality.errors }">
+        <div *ngIf="submitted && f.locality.errors" class="invalid-feedback">
+          <div *ngIf="f.locality.errors.required">This field is required</div>
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputCity" id="inputField"><b>City/District/Town<sup>*</sup></b></label>
+        <input type="text" class="form-control" id="inputCity" formControlName="city"
+          [ngClass]="{ 'is-invalid': submitted && f.city.errors }">
+        <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
+          <div *ngIf="f.city.errors.required">This Field is required</div>
+        </div>
+      </div>
+
+
+      <div class="form-group col-md-12">
+        <label for="address" id="inputField"><b>Address(Area & Street)<sup>*</sup></b></label>
+        <textarea class="form-control" id="inputAddress" rows="3" formControlName="address"
+          [ngClass]="{ 'is-invalid': submitted && f.address.errors }"></textarea>
+        <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+          <div *ngIf="f.address.errors.required">This Field is required</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputLandmark" id="inputField"><b>Landmark(Optional)</b></label>
+        <input type="text" class="form-control" id="inputLandmark" formControlName="landmark"
+          [ngClass]="{ 'is-invalid': submitted && f.landmark.errors }">
+        <div *ngIf="submitted && f.landmark.errors" class="invalid-feedback">
+          <div *ngIf="f.landmark.errors.required">This Field is required</div>
+        </div>
+      </div>
+
+      <div class="form-group col-md-4">
+        <label for="inputState" id="inputField"><b>State<sup>*</sup></b></label>
+        <select id="inputState" class="form-control" formControlName="state"
+          [ngClass]="{ 'is-invalid': submitted && f.state.errors }">
+          <option selected>Odisha</option>
+          <option selected>Jharkhand</option>
+          <option selected>Bihar</option>
+          <option selected>Chhattisgarh</option>
+          <option selected>Madhya Pradesh</option>
+        </select>
+        <div *ngIf="submitted && f.state.errors" class="invalid-feedback">
+          <div *ngIf="f.state.errors.required">This Field is required</div>
+        </div>
+      </div>
+      <div class="form-group col-md-2">
+        <label for="inputZip" id="inputField"><b>PinCode<sup>*</sup></b></label>
+        <input type="text" class="form-control" id="inputPin" placeholder="Enter pincode" formControlName="pinCode"
+          [ngClass]="{ 'is-invalid': submitted && f.pinCode.errors }">
+        <div *ngIf="submitted && f.pinCode.errors" class="invalid-feedback">
+          <div *ngIf="f.pinCode.errors.required">pinCode is required</div>
+          <div *ngIf="f.pinCode.errors.pattern">pinCode must be 6 Digits</div>
+        </div>
+      </div>
+    </div>
+    <div class="text-left">
+      <label for="addressType" id="inputField"><b>Address Type<sup>*</sup></b></label><br>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="addressType" id="inlineRadio1" value="option1"
+          formControlName="addressType">&nbsp;&nbsp;
+        <label class="form-check-label" for="inlineRadio1">Home</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+          value="option2">&nbsp;&nbsp;
+        <label class="form-check-label" for="inlineRadio2">Work</label>
+      </div>
+    </div>
+    <br>
+    <div class="text-center">
+
+      <button type="submit" class="btn btn-primary" [disabled]="loading" (click)="saveData()">Save</button><br>
+
+    </div>
+  </form>
+</div>
